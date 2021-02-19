@@ -1,20 +1,15 @@
-import funtch from "funtch";
+import { funtcher } from "../../api";
 import { FormType } from "./form.type";
 
 export function getFormIdsByBookshelf(
   sheflId: string,
   params: { offset?: number; limit?: number }
 ): Promise<Array<string>> {
-  const { offset = 0, limit = 10 } = params;
-  return funtch.get(
-    `/shelves/${sheflId}/forms?offset=${encodeURIComponent(
-      offset
-    )}&limit=${encodeURIComponent(limit)}`
-  );
+  return funtcher.get(`/shelves/${sheflId}/forms`, params);
 }
 
 export function getFormInformationById(
   formId: string
 ): Promise<Array<FormType>> {
-  return funtch.get(`/forms/${formId}`);
+  return funtcher.get(`/forms/${formId}`);
 }
