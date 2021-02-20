@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { AppStateType } from "../../state/state.type";
 import { getBookshelves } from "./state/action";
+import styles from "./Bookshelves.module.scss";
+import NavLinkLabel from "../nav-link/NavLinkLabel";
 
 const Bookshelves = () => {
   const dispatch = useDispatch();
@@ -26,10 +28,12 @@ const Bookshelves = () => {
   }, [bookshelfSlugs, history, selectedBookshelf]);
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {bookshelfIds.map((id) => (
         <li key={id}>
-          <Link to={bookshelfSlugs[id]}>{bookshelfTitles[id]}</Link>
+          <NavLinkLabel to={bookshelfSlugs[id]}>
+            {bookshelfTitles[id]}
+          </NavLinkLabel>
         </li>
       ))}
     </ul>

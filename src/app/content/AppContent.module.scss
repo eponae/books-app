@@ -1,24 +1,36 @@
 @import "../../style/variables";
 
+$menuWidth: 220px;
+$contentWidth: calc(100% - #{$menuWidth});
+
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  padding: $spacingUnit 0;
   @media (max-width: $mdBreakpoint) {
     flex-direction: column;
   }
 }
 
 .menu {
-  flex: 1 1 30%;
-  @media (max-width: $mdBreakpoint) {
-    flex-basis: 100%;
-  }
+  flex: 0 1 $menuWidth;
+  max-width: $menuWidth;
 }
 
 .content {
-  flex: 1 1 70%;
+  flex: 1 1 $contentWidth;
+  max-width: $contentWidth;
+  padding: 0 $spacingUnit * 2 $spacingUnit * 2;
+  @media (max-width: $mdBreakpoint) {
+    padding-top: $spacingUnit * 2;
+  }
+}
+
+.menu,
+.content {
   @media (max-width: $mdBreakpoint) {
     flex-basis: 100%;
+    max-width: 100%;
   }
 }
