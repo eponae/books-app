@@ -14,7 +14,7 @@ const Forms = () => {
   const bookshelfSlugs = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfSlugs
   );
-  const formIds = useSelector((state: AppStateType) => state.forms);
+  const formIds = useSelector((state: AppStateType) => state.forms.formIds);
 
   useEffect(() => {
     if (slug) {

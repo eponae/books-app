@@ -1,7 +1,7 @@
-import { SET_FORMS } from "../action-types";
+import { SET_FORMS } from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
-type ReducerType = FormReducerType;
+type ReducerType = FormReducerType["formIds"];
 const defaultState: ReducerType = [];
 
 export function formIds(

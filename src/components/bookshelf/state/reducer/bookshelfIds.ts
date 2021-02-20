@@ -1,5 +1,5 @@
 import { BookShelfType } from "../../bookshelf.type";
-import { SET_BOOKSHELVES } from "../action-types";
+import { SET_BOOKSHELVES } from "../action-type";
 import {
   BookshelfActionType,
   BookshelfReducerType,

@@ -1,6 +1,14 @@
+import { AuthorType } from "../../author/author.type";
 import { FormType } from "../form.type";
-import { setForms } from "./action";
+import { setForm, setForms } from "./action";
 
-export type FormReducerType = Array<FormType["id"]>;
+export type FormReducerType = {
+  formIds: Array<FormType["id"]>;
+  formImages: { [formId: string]: FormType["image"] };
+  formSlugs: { [formId: string]: FormType["slug"] };
+  formTitles: { [formId: string]: FormType["short_title"] };
+  formPrices: { [formId: string]: FormType["price"] };
+  formAuthors: { [formId: string]: AuthorType["id"] };
+};
 
-export type FormActionType = ReturnType<typeof setForms>;
+export type FormActionType = ReturnType<typeof setForms | typeof setForm>;

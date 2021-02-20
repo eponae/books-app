@@ -1,8 +1,4 @@
-type FormAuthorType = {
-  name: string;
-  slug: string;
-  id: string;
-};
+import { AuthorType } from "../author/author.type";
 
 type FormPriceType = {
   amount: number;
@@ -13,9 +9,8 @@ type FormPriceType = {
 export type FormType = {
   id: string;
   slug: string;
-  title: string;
   short_title: string;
   price?: FormPriceType;
   image: string;
-  authors?: Array<FormAuthorType>;
+  authors?: Array<AuthorType>;
 };
