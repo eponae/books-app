@@ -1,0 +1,8 @@
+.img {
+  $imgWidth: 125px;
+  $imgHeight: 188px;
+  width: $imgWidth;
+  height: $imgHeight;
+  max-width: $imgWidth;
+  max-height: $imgHeight;
+}

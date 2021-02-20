@@ -1,3 +1,4 @@
+import produce from "immer";
 import { SET_FORM } from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
@@ -12,7 +13,9 @@ export function formPrices(
     case SET_FORM: {
       const form = action.payload;
       if (form.price) {
-        return { ...state, [form.id]: form.price };
+        return produce(state, (draftState) => {
+          draftState[form.id] = form.price;
+        });
       }
       return state;
     }

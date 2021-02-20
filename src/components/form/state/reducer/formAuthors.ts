@@ -1,3 +1,4 @@
+import produce from "immer";
 import { SET_FORM } from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
@@ -11,10 +12,11 @@ export function formAuthors(
   switch (action.type) {
     case SET_FORM: {
       const form = action.payload;
-      if (form.authors) {
-        return { ...state, [form.id]: form.authors.map((author) => author.id) };
-      }
-      return state;
+      return produce(state, (draftState) => {
+        if (form.authors) {
+          draftState[form.id] = form.authors.map((author) => author.id);
+        }
+      });
     }
     default: {
       return state;

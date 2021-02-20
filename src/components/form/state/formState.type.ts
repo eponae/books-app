@@ -8,7 +8,7 @@ export type FormReducerType = {
   formSlugs: { [formId: string]: FormType["slug"] };
   formTitles: { [formId: string]: FormType["short_title"] };
   formPrices: { [formId: string]: FormType["price"] };
-  formAuthors: { [formId: string]: AuthorType["id"] };
+  formAuthors: { [formId: string]: Array<AuthorType["id"]> };
 };
 
 export type FormActionType = ReturnType<typeof setForms | typeof setForm>;

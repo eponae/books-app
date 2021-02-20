@@ -6,11 +6,12 @@ import { setSelectedBookshelf } from "../bookshelf/state/action";
 import { findBookshelfIdFromSlug } from "../bookshelf/state/selector";
 import Form from "./Form";
 import { getFormsForCurrentBookshelf } from "./state/action";
+import styles from "./Forms.module.scss";
 
 const Forms = () => {
   const { slug }: { slug?: string } = useParams();
-
   const dispatch = useDispatch();
+
   const bookshelfSlugs = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfSlugs
   );
@@ -27,9 +28,9 @@ const Forms = () => {
   }, [slug, dispatch, bookshelfSlugs]);
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {formIds.map((formId) => (
-        <Form id={formId} />
+        <Form id={formId} key={formId} />
       ))}
     </ul>
   );
