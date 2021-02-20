@@ -6,9 +6,9 @@ import styles from "./AppContent.module.scss";
 const AppContent = () => {
   return (
     <section className={styles.container}>
-      <div className={styles.menu}>
+      <nav className={styles.menu}>
         <Bookshelves />
-      </div>
+      </nav>
       <div className={styles.content}>
         <AppRoutes />
       </div>

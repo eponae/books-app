@@ -1,4 +1,4 @@
-import { SET_SELECTED_BOOKSHELF } from "../action-types";
+import { SET_SELECTED_BOOKSHELF } from "../action-type";
 import {
   BookshelfActionType,
   BookshelfReducerType,
