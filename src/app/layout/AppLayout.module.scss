@@ -1,0 +1,11 @@
+@import "../../style/variables";
+
+.header,
+.footer {
+  padding: $spacingUnit * 3;
+  color: $blackColor;
+}
+
+.link {
+  text-decoration: underline;
+}

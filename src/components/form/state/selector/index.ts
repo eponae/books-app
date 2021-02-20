@@ -41,3 +41,16 @@ export function getFormVisibleInformation(
   }
   return null;
 }
+
+export function formatFormPrice(
+  formPrice: Exclude<FormType["price"], undefined>
+) {
+  const price = [String(formPrice.amount)];
+  if (formPrice.currency) {
+    price.push("€");
+  }
+  if (formPrice.includes_taxes) {
+    price.push(formPrice.includes_taxes ? "TTC" : "HT");
+  }
+  return price.join(" ");
+}

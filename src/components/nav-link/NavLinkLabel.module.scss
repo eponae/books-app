@@ -1,0 +1,26 @@
+@import "../../style/variables";
+
+@mixin active {
+  background: $whiteColor;
+  color: $blueColor;
+}
+
+.container {
+  color: $blackColor;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+  display: block;
+  width: 100%;
+  padding: $spacingUnit $spacingUnit * 2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  &:hover {
+    @include active;
+  }
+}
+
+.active {
+  @include active;
+}

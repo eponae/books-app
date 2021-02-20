@@ -10,7 +10,7 @@ const AppLayout: FC = ({ children }) => {
       {children}
       <footer className={styles.footer}>
         <a href="https://github.com/eponae/books-app" className={styles.link}>
-          Liste de livres - Alice R - Février 2021
+          Voir le code source
         </a>
       </footer>
     </>
