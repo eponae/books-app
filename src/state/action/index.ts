@@ -1,6 +1,6 @@
-import * as formAction from "../../components/form/state/action";
-import * as bookshelfAction from "../../components/bookshelf/state/action";
-import * as authorAction from "../../components/author/state/action";
+import * as formAction from "../../domain/form/state/action";
+import * as bookshelfAction from "../../domain/bookshelf/state/action";
+import * as authorAction from "../../domain/author/state/action";
 
 const actions = {
   formAction,

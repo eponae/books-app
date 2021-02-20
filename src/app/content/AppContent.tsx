@@ -1,5 +1,5 @@
 import React from "react";
-import Bookshelves from "../../components/bookshelf/Bookshelves";
+import Bookshelves from "../../domain/bookshelf/components/Bookshelves";
 import AppRoutes from "../AppRoutes";
 import styles from "./AppContent.module.scss";
 

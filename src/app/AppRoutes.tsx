@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import Forms from "../components/form/Forms";
+import Forms from "../domain/form/components/Forms";
 
 const AppRoutes = () => {
   return (
