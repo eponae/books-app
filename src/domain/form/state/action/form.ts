@@ -2,12 +2,8 @@ import { setAuthors } from "../../../author/state/action";
 import { BookShelfType } from "../../../bookshelf/bookshelf.type";
 import { getFormIdsByBookshelf, getFormInformationById } from "../../form.api";
 import { FormType } from "../../form.type";
-import {
-  SET_FORMS,
-  SET_FORM,
-  RESET_FORMS,
-  SET_FORMS_LOADING,
-} from "../action-type";
+import { SET_FORMS, SET_FORM, RESET_FORMS } from "../action-type";
+import { setFormsHaveMore, setFormsOffset } from "./formsLoading";
 
 export const setForms = (formIds: Array<FormType["id"]>) =>
   <const>{ type: SET_FORMS, payload: formIds };
@@ -17,18 +13,21 @@ export const setForm = (form: FormType) =>
 
 export const resetForms = () => <const>{ type: RESET_FORMS };
 
-export const setFormsLoading = (isLoading: boolean) =>
-  <const>{ type: SET_FORMS_LOADING, payload: isLoading };
-
 export const getFormsForCurrentBookshelf = (
-  bookshelfId: BookShelfType["id"]
+  bookshelfId: BookShelfType["id"],
+  offset: number
 ) => async (dispatch: Dispatch) => {
-  dispatch(setFormsLoading(true));
+  const formsCountPerPage = 10;
   const formIds = await getFormIdsByBookshelf(bookshelfId, {
-    offset: 0,
+    offset,
+    limit: formsCountPerPage,
   });
-  dispatch(setForms(formIds));
-  dispatch(setFormsLoading(false));
+  if (formIds.length) {
+    dispatch(setFormsOffset(offset + formIds.length));
+    dispatch(setForms(formIds));
+  } else {
+    dispatch(setFormsHaveMore(false));
+  }
 };
 
 export const getForm = (formId: FormType["id"]) => async (

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { AppStateType } from "../../../state/state.type";
 import { getBookshelves } from "../state/action";
 import styles from "./Bookshelves.module.scss";
-import NavLinkLabel from "../../../components/nav-link/NavLinkLabel";
+import NavLinkLabel from "../../../components/nav-link-label/NavLinkLabel";
 
 const Bookshelves = () => {
   const dispatch = useDispatch();
@@ -23,10 +23,12 @@ const Bookshelves = () => {
 
   useEffect(() => {
     // handle first page loading
+
     if (!selectedBookshelf && bookshelfSlugs.length) {
-      history.push(bookshelfSlugs[0]);
+      const bookshlefId = bookshelfSlugs[0];
+      history.push(bookshlefId);
     }
-  }, [bookshelfSlugs, history, selectedBookshelf]);
+  }, [bookshelfSlugs, history, selectedBookshelf, dispatch]);
 
   if (!bookshelfIds || !bookshelfIds.length) {
     return null;

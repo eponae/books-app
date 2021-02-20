@@ -10,7 +10,7 @@ function formIds(state: ReducerType = defaultState, action: FormActionType) {
       return defaultState;
     }
     case SET_FORMS: {
-      return action.payload;
+      return [...state, ...action.payload];
     }
     default: {
       return state;

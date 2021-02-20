@@ -7,14 +7,7 @@ export function getFormVisibleInformation(
   forms: AppStateType["forms"],
   authors: AppStateType["authors"]
 ): FormType | null {
-  const {
-    formIds,
-    formImages,
-    formAuthors,
-    formPrices,
-    formSlugs,
-    formTitles,
-  } = forms;
+  const { formIds, formImages, formAuthors, formPrices, formTitles } = forms;
   const { authorIds, authorNames, authorSlugs } = authors;
   if (formIds.includes(id)) {
     const authors = forms.formAuthors[id]
@@ -32,7 +25,6 @@ export function getFormVisibleInformation(
 
     return {
       id,
-      slug: formSlugs[id],
       image: formImages[id],
       short_title: formTitles[id],
       authors,
