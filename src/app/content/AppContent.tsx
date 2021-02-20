@@ -1,21 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import Bookshelves from "../../components/bookshelf/Bookshelves";
-import { getBookshelves } from "../../components/bookshelf/state/action";
-import Forms from "../../components/form/Forms";
+import AppRoutes from "../AppRoutes";
+import styles from "./AppContent.module.scss";
 
 const AppContent = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getBookshelves());
-  }, [dispatch]);
-
-  const state = useSelector((state) => state);
-
   return (
-    <section>
-      <Bookshelves />
-      <Forms />
+    <section className={styles.container}>
+      <div className={styles.menu}>
+        <Bookshelves />
+      </div>
+      <div className={styles.content}>
+        <AppRoutes />
+      </div>
     </section>
   );
 };

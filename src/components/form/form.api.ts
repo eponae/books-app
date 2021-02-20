@@ -3,9 +3,9 @@ import { FormType } from "./form.type";
 
 export function getFormIdsByBookshelf(
   sheflId: string,
-  params: { offset?: number; limit?: number }
+  params?: { offset?: number; limit?: number }
 ): Promise<Array<string>> {
-  return funtcher.get(`/shelves/${sheflId}/forms`, params);
+  return funtcher.get(`/shelves/${sheflId}/forms`, { ...params });
 }
 
 export function getFormInformationById(

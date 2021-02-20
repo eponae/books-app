@@ -1,7 +1,8 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 
 const Forms = () => {
-  return <div></div>;
+  const { slug }: { slug: string } = useParams();
+  return <div>{slug}</div>;
 };
 
 export default Forms;
