@@ -12,21 +12,24 @@ const Bookshelves = () => {
     dispatch(getBookshelves());
   }, [dispatch]);
 
-  const { bookshelfSlugs, bookshelfTitles, selectedBookshelf } = useSelector(
-    (state: AppStateType) => state.bookshelves
-  );
+  const {
+    bookshelfIds,
+    bookshelfTitles,
+    bookshelfSlugs,
+    selectedBookshelf,
+  } = useSelector((state: AppStateType) => state.bookshelves);
 
   useEffect(() => {
-    if (selectedBookshelf) {
-      history.push(selectedBookshelf);
+    if (!selectedBookshelf && bookshelfSlugs.length) {
+      history.push(bookshelfSlugs[0]);
     }
-  }, [selectedBookshelf, history]);
+  }, [bookshelfSlugs, history, selectedBookshelf]);
 
   return (
     <ul>
-      {bookshelfSlugs.map((slug) => (
-        <li key={slug}>
-          <Link to={slug}>{bookshelfTitles[slug]}</Link>
+      {bookshelfIds.map((id) => (
+        <li key={id}>
+          <Link to={bookshelfSlugs[id]}>{bookshelfTitles[id]}</Link>
         </li>
       ))}
     </ul>

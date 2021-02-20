@@ -1,6 +1,7 @@
 type FormAuthorType = {
   name: string;
   slug: string;
+  id: string;
 };
 
 type FormPriceType = {
@@ -10,6 +11,7 @@ type FormPriceType = {
 };
 
 export type FormType = {
+  id: string;
   slug: string;
   title: string;
   short_title: string;

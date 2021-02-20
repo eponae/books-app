@@ -1,4 +1,4 @@
-import { SET_BOOKSHELVES, SET_SELECTED_BOOKSHELF } from "../action-types";
+import { SET_SELECTED_BOOKSHELF } from "../action-types";
 import {
   BookshelfActionType,
   BookshelfReducerType,
@@ -12,13 +12,9 @@ export function selectedBookshelf(
   action: BookshelfActionType
 ) {
   switch (action.type) {
-    case SET_BOOKSHELVES: {
-      const bookshelves = action.payload;
-      return bookshelves[0].slug;
-    }
     case SET_SELECTED_BOOKSHELF: {
-      const bookshelfSlug = action.payload;
-      return bookshelfSlug;
+      const bookshelfId = action.payload;
+      return bookshelfId;
     }
     default: {
       return state;

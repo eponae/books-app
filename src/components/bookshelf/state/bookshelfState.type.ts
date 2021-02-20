@@ -3,9 +3,10 @@ import { setBookshelves } from "./action";
 import { setSelectedBookshelf } from "./action/selectedBookshelf";
 
 export type BookshelfReducerType = {
-  bookshelfSlugs: Array<BookShelfType["slug"]>;
+  bookshelfIds: Array<BookShelfType["id"]>;
+  bookshelfSlugs: { [bookshelfId: string]: BookShelfType["slug"] };
   bookshelfTitles: { [bookshelfId: string]: BookShelfType["title"] };
-  selectedBookshelf: BookShelfType["slug"] | null;
+  selectedBookshelf: BookShelfType["id"] | null;
 };
 
 export type BookshelfActionType = ReturnType<

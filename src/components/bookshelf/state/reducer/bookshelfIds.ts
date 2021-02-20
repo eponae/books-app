@@ -5,23 +5,17 @@ import {
   BookshelfReducerType,
 } from "../bookshelfState.type";
 
-type ReducerType = BookshelfReducerType["bookshelfTitles"];
-const defaultState: ReducerType = {};
+type ReducerType = BookshelfReducerType["bookshelfIds"];
+const defaultState: ReducerType = [];
 
-export function bookshelfTitles(
+export function bookshelfIds(
   state: ReducerType = defaultState,
   action: BookshelfActionType
 ) {
   switch (action.type) {
     case SET_BOOKSHELVES: {
       const bookshelves = action.payload;
-      return bookshelves.reduce(
-        (acc: ReducerType, bookshelf: BookShelfType) => {
-          acc[bookshelf.id] = bookshelf.title;
-          return acc;
-        },
-        {}
-      );
+      return bookshelves.map((bookshelf: BookShelfType) => bookshelf.id);
     }
     default: {
       return state;
