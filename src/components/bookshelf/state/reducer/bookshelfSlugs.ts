@@ -1,8 +1,11 @@
 import { BookShelfType } from "../../bookshelf.type";
 import { SET_BOOKSHELVES } from "../action-types";
-import { BookshelfActionType } from "../bookshelfState.type";
+import {
+  BookshelfActionType,
+  BookshelfReducerType,
+} from "../bookshelfState.type";
 
-type ReducerType = Array<string>;
+type ReducerType = BookshelfReducerType["bookshelfSlugs"];
 const defaultState: ReducerType = [];
 
 export function bookshelfSlugs(

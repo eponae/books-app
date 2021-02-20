@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "AppLayout.module.scss";
+import styles from "./AppLayout.module.scss";
 
 const AppLayout: FC = ({ children }) => {
   return (

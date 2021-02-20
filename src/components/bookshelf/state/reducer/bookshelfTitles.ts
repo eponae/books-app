@@ -1,10 +1,11 @@
 import { BookShelfType } from "../../bookshelf.type";
 import { SET_BOOKSHELVES } from "../action-types";
-import { BookshelfActionType } from "../bookshelfState.type";
+import {
+  BookshelfActionType,
+  BookshelfReducerType,
+} from "../bookshelfState.type";
 
-type ReducerType = {
-  [bookshelfId: string]: BookShelfType["title"];
-};
+type ReducerType = BookshelfReducerType["bookshelfTitles"];
 const defaultState: ReducerType = {};
 
 export function bookshelfTitles(
