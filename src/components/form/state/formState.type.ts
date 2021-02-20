@@ -1,5 +1,6 @@
-import { setForm } from "./action";
+import { FormType } from "../form.type";
+import { setForms } from "./action";
 
-export type FormReducerType = {};
+export type FormReducerType = Array<FormType["id"]>;
 
-export type FormActionType = ReturnType<typeof setForm>;
+export type FormActionType = ReturnType<typeof setForms>;

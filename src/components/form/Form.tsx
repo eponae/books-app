@@ -1,7 +1,12 @@
-import React from "react";
+import { FC } from "react";
+import { FormType } from "./form.type";
 
-const Form = () => {
-  return <div></div>;
+type Props = {
+  id: FormType["id"];
+};
+
+const Form: FC<Props> = ({ id }) => {
+  return <div>{id}</div>;
 };
 
 export default Form;

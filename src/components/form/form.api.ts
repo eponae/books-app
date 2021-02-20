@@ -8,8 +8,6 @@ export function getFormIdsByBookshelf(
   return funtcher.get(`/shelves/${sheflId}/forms`, { ...params });
 }
 
-export function getFormInformationById(
-  formId: string
-): Promise<Array<FormType>> {
+export function getFormInformationById(formId: string): Promise<FormType> {
   return funtcher.get(`/forms/${formId}`);
 }
