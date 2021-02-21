@@ -1,17 +1,16 @@
+import actions from "../../../../state/action";
 import {
-  GO_TO_NEXT_PAGE,
-  GO_TO_PREVIOUS_PAGE,
   RESET_FORMS_LOADING,
   SET_FORMS_HAVE_MORE,
   SET_FORMS_LOADING,
+  SET_FORMS_OFFSET,
 } from "../action-type";
 
 export const setFormsHaveMore = (hasMore: boolean) =>
   <const>{ type: SET_FORMS_HAVE_MORE, payload: hasMore };
 
-export const goToPreviousPage = () => <const>{ type: GO_TO_PREVIOUS_PAGE };
-
-export const goToNextPage = () => <const>{ type: GO_TO_NEXT_PAGE };
+export const setFormsOffset = (offset: number) =>
+  <const>{ type: SET_FORMS_OFFSET, payload: offset };
 
 export const resetFormsLoading = () => <const>{ type: RESET_FORMS_LOADING };
 

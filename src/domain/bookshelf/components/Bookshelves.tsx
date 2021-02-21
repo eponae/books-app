@@ -11,27 +11,12 @@ const Bookshelves = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(getBookshelves());
-  }, [dispatch]);
-
   const {
     bookshelfIds,
     bookshelfTitles,
     bookshelfSlugs,
     selectedBookshelf,
   } = useSelector((state: AppStateType) => state.bookshelves);
-
-  useEffect(() => {
-    // handle first page loading
-
-    if (!selectedBookshelf && bookshelfIds.length) {
-      const bookshelfId = bookshelfIds[0];
-      const bookshlefSlug = bookshelfSlugs[bookshelfId];
-      dispatch(setBookshelf(bookshelfId));
-      history.push(bookshlefSlug);
-    }
-  }, [bookshelfSlugs, bookshelfIds, history, selectedBookshelf, dispatch]);
 
   const selectBookshelf = useCallback(
     (bookshelfId: BookShelfType["id"]) => (
@@ -41,6 +26,22 @@ const Bookshelves = () => {
     },
     [dispatch]
   );
+
+  // Load bookshelves
+  useEffect(() => {
+    dispatch(getBookshelves());
+  }, [dispatch]);
+
+  // Handle first page loading
+  useEffect(() => {
+    const isfirstPageLoading = window.location.pathname === "/";
+    if (isfirstPageLoading && bookshelfIds.length) {
+      const bookshelfId = bookshelfIds[0];
+      const bookshlefSlug = bookshelfSlugs[bookshelfId];
+      dispatch(setBookshelf(bookshelfId));
+      history.push(bookshlefSlug);
+    }
+  }, [bookshelfSlugs, bookshelfIds, history, selectedBookshelf, dispatch]);
 
   if (!bookshelfIds || !bookshelfIds.length) {
     return null;

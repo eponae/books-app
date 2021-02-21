@@ -1,14 +1,13 @@
 import { AuthorType } from "../../author/author.type";
 import { FormType } from "../form.type";
 import {
-  goToNextPage,
-  goToPreviousPage,
   resetForms,
   resetFormsLoading,
   setForm,
   setForms,
   setFormsHaveMore,
   setFormsLoading,
+  setFormsOffset,
 } from "./action";
 
 export type FormReducerType = {
@@ -30,7 +29,6 @@ export type FormActionType = ReturnType<
   | typeof resetForms
   | typeof resetFormsLoading
   | typeof setFormsHaveMore
-  | typeof goToNextPage
-  | typeof goToPreviousPage
+  | typeof setFormsOffset
   | typeof setFormsLoading
 >;

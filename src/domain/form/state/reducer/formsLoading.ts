@@ -1,9 +1,8 @@
 import {
-  GO_TO_NEXT_PAGE,
-  GO_TO_PREVIOUS_PAGE,
   RESET_FORMS_LOADING,
   SET_FORMS_HAVE_MORE,
   SET_FORMS_LOADING,
+  SET_FORMS_OFFSET,
 } from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
@@ -30,18 +29,8 @@ function formsLoading(
     case SET_FORMS_HAVE_MORE: {
       return { ...state, hasMore: action.payload };
     }
-    case GO_TO_PREVIOUS_PAGE: {
-      const newOffset = state.offset - FORMS_COUNT_PER_PAGE;
-      if (newOffset === 0) {
-        return { offset: 0, hasMore: false };
-      }
-      return {
-        ...state,
-        offset: newOffset,
-      };
-    }
-    case GO_TO_NEXT_PAGE: {
-      return { ...state, offset: state.offset + FORMS_COUNT_PER_PAGE };
+    case SET_FORMS_OFFSET: {
+      return { ...state, offset: action.payload };
     }
     default: {
       return state;

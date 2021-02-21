@@ -4,10 +4,9 @@ import { getFormIdsByBookshelf, getFormInformationById } from "../../form.api";
 import { FormType } from "../../form.type";
 import { SET_FORMS, SET_FORM, RESET_FORMS } from "../action-type";
 import {
-  goToNextPage,
-  goToPreviousPage,
   setFormsHaveMore,
   setFormsLoading,
+  setFormsOffset,
 } from "./formsLoading";
 
 export const setForms = (formIds: Array<FormType["id"]>) =>
@@ -21,8 +20,7 @@ export const resetForms = () => <const>{ type: RESET_FORMS };
 export const getFormsForBookshelfFromOffset = (
   bookshelfId: BookShelfType["id"],
   offset: number,
-  limit: number,
-  goNext: boolean
+  limit: number
 ) => async (dispatch: Dispatch) => {
   dispatch(setFormsLoading(true));
   dispatch(resetAuthors());
@@ -32,12 +30,7 @@ export const getFormsForBookshelfFromOffset = (
     offset,
     limit,
   });
-
-  if (goNext) {
-    dispatch(goToNextPage());
-  } else {
-    dispatch(goToPreviousPage());
-  }
+  dispatch(setFormsOffset(offset));
 
   if (formIds.length) {
     dispatch(setForms(formIds));

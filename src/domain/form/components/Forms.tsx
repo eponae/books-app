@@ -27,11 +27,9 @@ const Forms = () => {
 
   const loadPageForms = useCallback(
     ({
-      goNext,
       currentBookshelfId,
       currentOffset,
     }: {
-      goNext: boolean;
       currentBookshelfId: typeof bookshelfId;
       currentOffset: typeof offset;
     }) => {
@@ -40,8 +38,7 @@ const Forms = () => {
           getFormsForBookshelfFromOffset(
             currentBookshelfId,
             currentOffset,
-            FORMS_COUNT_PER_PAGE,
-            goNext
+            FORMS_COUNT_PER_PAGE
           )
         );
       }
@@ -50,30 +47,28 @@ const Forms = () => {
   );
 
   const onNavButtonClicked = useCallback(
-    (
-      goNext: boolean,
-      currentBookshelfId: typeof bookshelfId,
-      currentOffset: typeof offset
-    ) => (event: MouseEvent<HTMLButtonElement>) => {
-      loadPageForms({ goNext, currentBookshelfId, currentOffset });
+    (currentBookshelfId: typeof bookshelfId, currentOffset: typeof offset) => (
+      event: MouseEvent<HTMLButtonElement>
+    ) => {
+      loadPageForms({ currentBookshelfId, currentOffset });
     },
     [loadPageForms]
   );
 
+  // Handle page reloading
   useEffect(() => {
-    // handle page reloading
-
-    if (slug && !bookshelfId) {
-      const bookshelfIdFromSlug = findBookshelfIdFromSlug(slug, bookshelfSlugs);
+    const isPageReloading = slug && !bookshelfId;
+    if (isPageReloading) {
+      const bookshelfIdFromSlug = findBookshelfIdFromSlug(bookshelfSlugs, slug);
       if (bookshelfIdFromSlug) {
         dispatch(setBookshelf(bookshelfIdFromSlug));
       }
     }
   }, [dispatch, slug, bookshelfSlugs, bookshelfId, loadPageForms]);
 
+  // Update if selected bookshlef changes
   useEffect(() => {
     loadPageForms({
-      goNext: true,
       currentBookshelfId: bookshelfId,
       currentOffset: 0,
     });
@@ -91,10 +86,13 @@ const Forms = () => {
         ))}
       </ul>
       <div className={styles.actions}>
-        {offset > 10 && (
+        {offset > FORMS_COUNT_PER_PAGE && (
           <button
             type="button"
-            onClick={onNavButtonClicked(false, bookshelfId, offset)}
+            onClick={onNavButtonClicked(
+              bookshelfId,
+              offset - FORMS_COUNT_PER_PAGE
+            )}
             className={styles.button}
           >
             Précédent
@@ -103,7 +101,10 @@ const Forms = () => {
         {hasMore && (
           <button
             type="button"
-            onClick={onNavButtonClicked(true, bookshelfId, offset)}
+            onClick={onNavButtonClicked(
+              bookshelfId,
+              offset + FORMS_COUNT_PER_PAGE
+            )}
             className={styles.button}
           >
             Suivant
