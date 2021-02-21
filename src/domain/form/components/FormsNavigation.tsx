@@ -16,6 +16,9 @@ const FormsNavigation: FC<Props> = ({ page, slug, bookshelfId }) => {
   const bookshelfFormCount = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfFormCount
   );
+  const bookshelfTitles = useSelector(
+    (state: AppStateType) => state.bookshelves.bookshelfTitles
+  );
 
   const numberOfPages =
     bookshelfId && bookshelfFormCount[bookshelfId]
@@ -23,16 +26,19 @@ const FormsNavigation: FC<Props> = ({ page, slug, bookshelfId }) => {
       : 1;
   return (
     <div className={styles.actions}>
-      {page > 1 && (
-        <Link to={`/${slug}/${page - 1}`} className={styles.link}>
-          Précédent
-        </Link>
-      )}
-      {page < numberOfPages && (
-        <Link to={`/${slug}/${page + 1}`} className={styles.link}>
-          Suivant
-        </Link>
-      )}
+      <span className={styles.title}>{bookshelfTitles[bookshelfId]}</span>
+      <div>
+        {page > 1 && (
+          <Link to={`/${slug}/${page - 1}`} className={styles.link}>
+            Précédent
+          </Link>
+        )}
+        {page < numberOfPages && (
+          <Link to={`/${slug}/${page + 1}`} className={styles.link}>
+            Suivant
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
