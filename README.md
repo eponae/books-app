@@ -77,23 +77,9 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 ## Issues to fix
 
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ Npm Audit Manual Review │
-│ Some vulnerabilities require your attention to resolve │
-│
-│ Visit https://go.npm.me/audit-guide for additional guidance │
-└─────────────────────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ High │ Prototype Pollution │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Package │ immer │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Patched in │ >=8.0.1 │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Dependency of │ react-scripts │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ Path │ react-scripts > react-dev-utils > immer │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ More info │ https://npmjs.com/advisories/1603 │
-└─────────────────────────────────────────────────────────────────────────────┘
-found 1 high severity vulnerability in 2056 scanned packages
+**Npm Audit Manual Review**
+Some vulnerabilities require attention to resolve
+
+Package : immer
+Patched in 8.0.1
+Dependency react-scripts > react-dev-utils > immer
