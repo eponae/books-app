@@ -49,6 +49,7 @@ const Bookshelves = () => {
 
   return (
     <ul className={styles.list}>
+      <li className={styles.title}>Étagères</li>
       {bookshelfIds.map((id) => (
         <li key={id}>
           <NavLinkLabel

@@ -1,5 +1,14 @@
 @import "../../../style/variables";
 
+.title {
+  color: $greyColor;
+  padding: $spacingUnit * 2;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
 .list {
   height: 100%;
   background-color: #ebf0f5;

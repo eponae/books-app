@@ -6,10 +6,11 @@ import Form from "./Form";
 import styles from "./Forms.module.scss";
 import Loader from "../../../components/loader/Loader";
 import { findBookshelfIdFromSlug } from "../../bookshelf/state/selector";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getFormsForBookshelfFromOffset } from "../state/action";
 import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
 import { getOffsetFromPage, getPageFromUrl } from "../state/selector";
+import FormsNavigation from "./FormsNavigation";
 
 const Forms = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Forms = () => {
   const bookshelfSlugs = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfSlugs
   );
-  const { hasMore, isLoading, page } = useSelector(
+  const { isLoading, page } = useSelector(
     (state: AppStateType) => state.forms.formsLoading
   );
 
@@ -79,18 +80,9 @@ const Forms = () => {
           <Form id={formId} key={formId} />
         ))}
       </ul>
-      <div className={styles.actions}>
-        {page > 1 && (
-          <Link to={`/${slug}/${page - 1}`} className={styles.link}>
-            Précédent
-          </Link>
-        )}
-        {hasMore && (
-          <Link to={`/${slug}/${page + 1}`} className={styles.link}>
-            Suivant
-          </Link>
-        )}
-      </div>
+      {slug && bookshelfId && (
+        <FormsNavigation page={page} slug={slug} bookshelfId={bookshelfId} />
+      )}
     </>
   );
 };

@@ -1,12 +1,8 @@
 import {
   RESET_FORMS_LOADING,
-  SET_FORMS_HAVE_MORE,
   SET_FORMS_LOADING,
   SET_FORMS_PAGE,
 } from "../action-type";
-
-export const setFormsHaveMore = (hasMore: boolean) =>
-  <const>{ type: SET_FORMS_HAVE_MORE, payload: hasMore };
 
 export const setFormsPage = (page: number) =>
   <const>{ type: SET_FORMS_PAGE, payload: { page } };
