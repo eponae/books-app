@@ -4,7 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, you can run different tasks with npm.
+If you don't have npm install : [Install Node and npm](https://www.npmjs.com/get-npm).
 
 ### `npm start`
 
@@ -78,6 +79,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 ## Issues to fix
 
 **Npm Audit Manual Review**
+
 <p>Some vulnerabilities require attention to resolve</p>
 
 <p>Package : immer</p>
