@@ -78,8 +78,8 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 ## Issues to fix
 
 **Npm Audit Manual Review**
-Some vulnerabilities require attention to resolve
+<p>Some vulnerabilities require attention to resolve</p>
 
-Package : immer
-Patched in 8.0.1
-Dependency react-scripts > react-dev-utils > immer
+<p>Package : immer</p>
+<p>Patched in 8.0.1/<p>
+<p>Dependency react-scripts > react-dev-utils > immer</p>
