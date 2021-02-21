@@ -4,7 +4,7 @@ import Forms from "../domain/form/components/Forms";
 const AppRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/:slug" children={<Forms />} />
+      <Route exact path="/:slug/:pageNumber" children={<Forms />} />
     </Switch>
   );
 };

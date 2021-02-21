@@ -1,4 +1,4 @@
-import { useCallback, useEffect, MouseEvent } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppStateType } from "../../../state/state.type";
 import { setBookshelf } from "../../bookshelf/state/action";
@@ -6,13 +6,17 @@ import Form from "./Form";
 import styles from "./Forms.module.scss";
 import Loader from "../../../components/loader/Loader";
 import { findBookshelfIdFromSlug } from "../../bookshelf/state/selector";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getFormsForBookshelfFromOffset } from "../state/action";
 import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
+import { getOffsetFromPage, getPageFromUrl } from "../state/selector";
 
 const Forms = () => {
   const dispatch = useDispatch();
-  const { slug } = useParams<{ slug?: string }>();
+  const { slug, pageNumber } = useParams<{
+    slug?: string;
+    pageNumber?: string;
+  }>();
 
   const bookshelfId = useSelector(
     (state: AppStateType) => state.bookshelves.selectedBookshelf
@@ -21,22 +25,21 @@ const Forms = () => {
   const bookshelfSlugs = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfSlugs
   );
-  const { hasMore, offset, isLoading } = useSelector(
+  const { hasMore, isLoading, page } = useSelector(
     (state: AppStateType) => state.forms.formsLoading
   );
 
   const loadPageForms = useCallback(
-    ({
-      currentBookshelfId,
-      currentOffset,
-    }: {
-      currentBookshelfId: typeof bookshelfId;
-      currentOffset: typeof offset;
-    }) => {
+    (
+      currentBookshelfId: typeof bookshelfId,
+      currentPage: typeof page,
+      currentOffset: typeof page
+    ) => {
       if (currentBookshelfId) {
         dispatch(
           getFormsForBookshelfFromOffset(
             currentBookshelfId,
+            currentPage,
             currentOffset,
             FORMS_COUNT_PER_PAGE
           )
@@ -44,15 +47,6 @@ const Forms = () => {
       }
     },
     [dispatch]
-  );
-
-  const onNavButtonClicked = useCallback(
-    (currentBookshelfId: typeof bookshelfId, currentOffset: typeof offset) => (
-      event: MouseEvent<HTMLButtonElement>
-    ) => {
-      loadPageForms({ currentBookshelfId, currentOffset });
-    },
-    [loadPageForms]
   );
 
   // Handle page reloading
@@ -64,15 +58,15 @@ const Forms = () => {
         dispatch(setBookshelf(bookshelfIdFromSlug));
       }
     }
-  }, [dispatch, slug, bookshelfSlugs, bookshelfId, loadPageForms]);
+  }, [dispatch, slug, bookshelfSlugs, bookshelfId]);
 
-  // Update if selected bookshlef changes
+  // Update if selected bookshlef or page changes
   useEffect(() => {
-    loadPageForms({
-      currentBookshelfId: bookshelfId,
-      currentOffset: 0,
-    });
-  }, [bookshelfId, loadPageForms]);
+    const currentPage = getPageFromUrl(pageNumber);
+    const currentOffset = getOffsetFromPage(currentPage, FORMS_COUNT_PER_PAGE);
+
+    loadPageForms(bookshelfId, currentPage, currentOffset);
+  }, [bookshelfId, loadPageForms, pageNumber]);
 
   if (isLoading) {
     return <Loader />;
@@ -86,29 +80,15 @@ const Forms = () => {
         ))}
       </ul>
       <div className={styles.actions}>
-        {offset > FORMS_COUNT_PER_PAGE && (
-          <button
-            type="button"
-            onClick={onNavButtonClicked(
-              bookshelfId,
-              offset - FORMS_COUNT_PER_PAGE
-            )}
-            className={styles.button}
-          >
+        {page > 1 && (
+          <Link to={`/${slug}/${page - 1}`} className={styles.link}>
             Précédent
-          </button>
+          </Link>
         )}
         {hasMore && (
-          <button
-            type="button"
-            onClick={onNavButtonClicked(
-              bookshelfId,
-              offset + FORMS_COUNT_PER_PAGE
-            )}
-            className={styles.button}
-          >
+          <Link to={`/${slug}/${page + 1}`} className={styles.link}>
             Suivant
-          </button>
+          </Link>
         )}
       </div>
     </>

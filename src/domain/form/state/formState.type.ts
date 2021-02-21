@@ -7,7 +7,7 @@ import {
   setForms,
   setFormsHaveMore,
   setFormsLoading,
-  setFormsOffset,
+  setFormsPage,
 } from "./action";
 
 export type FormReducerType = {
@@ -18,8 +18,8 @@ export type FormReducerType = {
   formAuthors: { [formId: string]: Array<AuthorType["id"]> };
   formsLoading: {
     hasMore: boolean;
-    offset: number;
     isLoading: boolean;
+    page: number;
   };
 };
 
@@ -29,6 +29,6 @@ export type FormActionType = ReturnType<
   | typeof resetForms
   | typeof resetFormsLoading
   | typeof setFormsHaveMore
-  | typeof setFormsOffset
+  | typeof setFormsPage
   | typeof setFormsLoading
 >;

@@ -6,7 +6,7 @@ import { SET_FORMS, SET_FORM, RESET_FORMS } from "../action-type";
 import {
   setFormsHaveMore,
   setFormsLoading,
-  setFormsOffset,
+  setFormsPage,
 } from "./formsLoading";
 
 export const setForms = (formIds: Array<FormType["id"]>) =>
@@ -19,18 +19,19 @@ export const resetForms = () => <const>{ type: RESET_FORMS };
 
 export const getFormsForBookshelfFromOffset = (
   bookshelfId: BookShelfType["id"],
+  page: number,
   offset: number,
   limit: number
 ) => async (dispatch: Dispatch) => {
   dispatch(setFormsLoading(true));
   dispatch(resetAuthors());
   dispatch(resetForms());
+  dispatch(setFormsPage(page));
 
   const formIds = await getFormIdsByBookshelf(bookshelfId, {
     offset,
     limit,
   });
-  dispatch(setFormsOffset(offset));
 
   if (formIds.length) {
     dispatch(setForms(formIds));

@@ -46,3 +46,12 @@ export function formatFormPrice(
   }
   return price.join(" ");
 }
+
+export function getOffsetFromPage(page: number, limit: number) {
+  return page > 0 ? (page - 1) * limit : 0;
+}
+
+export function getPageFromUrl(pageUrl?: string) {
+  const pageNumber = pageUrl ? parseInt(pageUrl) : 1;
+  return Number.isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
+}
