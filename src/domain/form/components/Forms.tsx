@@ -75,6 +75,9 @@ const Forms = () => {
 
   return (
     <>
+      {slug && bookshelfId && (
+        <FormsNavigation page={page} slug={slug} bookshelfId={bookshelfId} />
+      )}
       <ul className={styles.list}>
         {formIds.map((formId) => (
           <Form id={formId} key={formId} />

@@ -1,9 +1,23 @@
 @import "../../../style/variables";
 
 .actions {
-  padding: $spacingUnit * 2 0;
+  padding: $spacingUnit * 4 0 $spacingUnit * 2;
   width: 100%;
-  text-align: right;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  padding-right: $spacingUnit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: $blueColor;
+  font-size: 16px;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .link {

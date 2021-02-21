@@ -33,8 +33,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
 ## What was done
 
 - Display the given list of bookshelves (no pagination).
@@ -61,6 +59,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
   - Sort and filter the list of forms displayed.
   - Allow different types of list display (grid, list).
   - Display forms count next to bookshelf names.
+  - Show long form or bookshelf titles on mouse hover thanks to a tooltip.
 - Handle forms that appear in more than one bookshelf.
 - Handle user information and display.
 - Add design system components : typography, pagination and loading.
