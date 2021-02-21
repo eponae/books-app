@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { MouseEvent, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { AppStateType } from "../../../state/state.type";
-import { getBookshelves } from "../state/action";
+import { getBookshelves, setBookshelf } from "../state/action";
 import styles from "./Bookshelves.module.scss";
 import NavLinkLabel from "../../../components/nav-link-label/NavLinkLabel";
+import { BookShelfType } from "../bookshelf.type";
 
 const Bookshelves = () => {
   const dispatch = useDispatch();
@@ -24,11 +25,22 @@ const Bookshelves = () => {
   useEffect(() => {
     // handle first page loading
 
-    if (!selectedBookshelf && bookshelfSlugs.length) {
-      const bookshlefId = bookshelfSlugs[0];
-      history.push(bookshlefId);
+    if (!selectedBookshelf && bookshelfIds.length) {
+      const bookshelfId = bookshelfIds[0];
+      const bookshlefSlug = bookshelfSlugs[bookshelfId];
+      dispatch(setBookshelf(bookshelfId));
+      history.push(bookshlefSlug);
     }
-  }, [bookshelfSlugs, history, selectedBookshelf, dispatch]);
+  }, [bookshelfSlugs, bookshelfIds, history, selectedBookshelf, dispatch]);
+
+  const selectBookshelf = useCallback(
+    (bookshelfId: BookShelfType["id"]) => (
+      event: MouseEvent<HTMLAnchorElement>
+    ) => {
+      dispatch(setBookshelf(bookshelfId));
+    },
+    [dispatch]
+  );
 
   if (!bookshelfIds || !bookshelfIds.length) {
     return null;
@@ -38,7 +50,7 @@ const Bookshelves = () => {
     <ul className={styles.list}>
       {bookshelfIds.map((id) => (
         <li key={id}>
-          <NavLinkLabel to={bookshelfSlugs[id]}>
+          <NavLinkLabel to={bookshelfSlugs[id]} onClick={selectBookshelf(id)}>
             {bookshelfTitles[id]}
           </NavLinkLabel>
         </li>

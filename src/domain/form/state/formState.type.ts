@@ -1,11 +1,14 @@
 import { AuthorType } from "../../author/author.type";
 import { FormType } from "../form.type";
 import {
+  goToNextPage,
+  goToPreviousPage,
   resetForms,
+  resetFormsLoading,
   setForm,
   setForms,
   setFormsHaveMore,
-  setFormsOffset,
+  setFormsLoading,
 } from "./action";
 
 export type FormReducerType = {
@@ -14,13 +17,20 @@ export type FormReducerType = {
   formTitles: { [formId: string]: FormType["short_title"] };
   formPrices: { [formId: string]: FormType["price"] };
   formAuthors: { [formId: string]: Array<AuthorType["id"]> };
-  formsLoading: { hasMore: boolean; offset: number };
+  formsLoading: {
+    hasMore: boolean;
+    offset: number;
+    isLoading: boolean;
+  };
 };
 
 export type FormActionType = ReturnType<
   | typeof setForms
   | typeof setForm
   | typeof resetForms
+  | typeof resetFormsLoading
   | typeof setFormsHaveMore
-  | typeof setFormsOffset
+  | typeof goToNextPage
+  | typeof goToPreviousPage
+  | typeof setFormsLoading
 >;

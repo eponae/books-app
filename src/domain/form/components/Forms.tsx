@@ -1,14 +1,14 @@
-import { useCallback, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroller";
+import { useCallback, useEffect, MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppStateType } from "../../../state/state.type";
-import { setBookshelfId } from "../../bookshelf/state/action";
+import { setBookshelf } from "../../bookshelf/state/action";
 import Form from "./Form";
-import { getFormsForCurrentBookshelf } from "../state/action";
 import styles from "./Forms.module.scss";
 import Loader from "../../../components/loader/Loader";
 import { findBookshelfIdFromSlug } from "../../bookshelf/state/selector";
 import { useParams } from "react-router-dom";
+import { getFormsForBookshelfFromOffset } from "../state/action";
+import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
 
 const Forms = () => {
   const dispatch = useDispatch();
@@ -21,41 +21,96 @@ const Forms = () => {
   const bookshelfSlugs = useSelector(
     (state: AppStateType) => state.bookshelves.bookshelfSlugs
   );
-  const hasMore = useSelector(
-    (state: AppStateType) => state.forms.formsLoading.hasMore
+  const { hasMore, offset, isLoading } = useSelector(
+    (state: AppStateType) => state.forms.formsLoading
   );
-  const offset = useSelector(
-    (state: AppStateType) => state.forms.formsLoading.offset
+
+  const loadPageForms = useCallback(
+    ({
+      goNext,
+      currentBookshelfId,
+      currentOffset,
+    }: {
+      goNext: boolean;
+      currentBookshelfId: typeof bookshelfId;
+      currentOffset: typeof offset;
+    }) => {
+      if (currentBookshelfId) {
+        dispatch(
+          getFormsForBookshelfFromOffset(
+            currentBookshelfId,
+            currentOffset,
+            FORMS_COUNT_PER_PAGE,
+            goNext
+          )
+        );
+      }
+    },
+    [dispatch]
+  );
+
+  const onNavButtonClicked = useCallback(
+    (
+      goNext: boolean,
+      currentBookshelfId: typeof bookshelfId,
+      currentOffset: typeof offset
+    ) => (event: MouseEvent<HTMLButtonElement>) => {
+      loadPageForms({ goNext, currentBookshelfId, currentOffset });
+    },
+    [loadPageForms]
   );
 
   useEffect(() => {
-    if (slug) {
+    // handle page reloading
+
+    if (slug && !bookshelfId) {
       const bookshelfIdFromSlug = findBookshelfIdFromSlug(slug, bookshelfSlugs);
       if (bookshelfIdFromSlug) {
-        dispatch(setBookshelfId(bookshelfIdFromSlug));
+        dispatch(setBookshelf(bookshelfIdFromSlug));
       }
     }
-  }, [dispatch, slug, bookshelfSlugs]);
+  }, [dispatch, slug, bookshelfSlugs, bookshelfId, loadPageForms]);
 
-  const loadMoreForms = useCallback(() => {
-    if (bookshelfId) {
-      dispatch(getFormsForCurrentBookshelf(bookshelfId, offset));
-    }
-  }, [dispatch, offset, bookshelfId]);
+  useEffect(() => {
+    loadPageForms({
+      goNext: true,
+      currentBookshelfId: bookshelfId,
+      currentOffset: 0,
+    });
+  }, [bookshelfId, loadPageForms]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
-    <InfiniteScroll
-      pageStart={0}
-      loadMore={loadMoreForms}
-      hasMore={hasMore}
-      loader={<Loader key="forms-loader" />}
-    >
+    <>
       <ul className={styles.list}>
         {formIds.map((formId) => (
           <Form id={formId} key={formId} />
         ))}
       </ul>
-    </InfiniteScroll>
+      <div className={styles.actions}>
+        {offset > 10 && (
+          <button
+            type="button"
+            onClick={onNavButtonClicked(false, bookshelfId, offset)}
+            className={styles.button}
+          >
+            Précédent
+          </button>
+        )}
+        {hasMore && (
+          <button
+            type="button"
+            onClick={onNavButtonClicked(true, bookshelfId, offset)}
+            className={styles.button}
+          >
+            Suivant
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

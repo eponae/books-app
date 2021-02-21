@@ -5,3 +5,19 @@
   grid-template-columns: repeat(auto-fit, minmax(166px, 1fr));
   grid-gap: $spacingUnit * 5 $spacingUnit * 3;
 }
+
+.actions {
+  padding: $spacingUnit * 2 0;
+  width: 100%;
+  text-align: right;
+}
+
+.button {
+  color: $blueColor;
+  font-size: 15px;
+  font-weight: 900;
+  margin-left: $spacingUnit * 2;
+  &:hover {
+    text-decoration: underline;
+  }
+}
