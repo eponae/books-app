@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Books app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) Typescript template.
 
 ## Available Scripts
 
@@ -29,18 +29,49 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## What was done
+
+- Display the given list of bookshelves (no pagination).
+- Display the list of forms for each selected bookshelf thanks to pagination : previous and next buttons displayed, number of pages computed, grid.
+- Display information about each form (book) in a list of forms : cover, short title, authors if any, price.
+- Add links to Glose's authors public pages.
+- Create Redux model for : bookshelves, forms and authors (user is not handled).
+- Reuse some of the existing CSS from Glose example page.
+- Use given API services.
+- Technical :
+  - Normalize Redux state and use immer if necessary for immutability.
+  - Use Redux dev tools and chrome developer console to debug.
+  - Use css modules and scss for stylesheets.
+  - Use typescript for typing.
+  - Use react-testing-library for testing.
+  - Use [funtch](https://github.com/ViBiOh/funtch) for http requests.
+  - Use VsCode IDE to develop this project and github to manage the source code.
+
+## What could have been done
+
+- Add more tests : unit, integration, E2E with cypress.
+- Add more features :
+  - Show average rate for each form if any.
+  - Sort and filter the list of forms displayed.
+  - Allow different types of list display (grid, list).
+  - Display forms count next to bookshelf names.
+- Handle forms that appear in more than one bookshelf.
+- Handle user information and display.
+- Add design system components : typography, pagination and loading.
+- Handle different languages.
+- Cancel requests if the user goes quickly from page to page.
+- Handle form covers that can not be loaded and optimize covers loading.
+- Handle errors and display a feedback to the user.
+- Handle api errors : inconsistent number of forms per page or downtime if any.
+- Deploy to production and check npm tasks for CI.
+- Change Favicon.
+- Technical :
+  - Study if Map, Set and Reselect could have been usefull.
+  - Use lazy loading and code splitting.
+  - Do not use global variable for forms count per page.
