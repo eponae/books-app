@@ -74,3 +74,26 @@ You can learn more in the [Create React App documentation](https://facebook.gith
   - Study if Map, Set and Reselect could have been usefull.
   - Use lazy loading and code splitting.
   - Do not use global variable for forms count per page.
+
+## Issues to fix
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Npm Audit Manual Review │
+│ Some vulnerabilities require your attention to resolve │
+│
+│ Visit https://go.npm.me/audit-guide for additional guidance │
+└─────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ High │ Prototype Pollution │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Package │ immer │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Patched in │ >=8.0.1 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Dependency of │ react-scripts │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Path │ react-scripts > react-dev-utils > immer │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ More info │ https://npmjs.com/advisories/1603 │
+└─────────────────────────────────────────────────────────────────────────────┘
+found 1 high severity vulnerability in 2056 scanned packages

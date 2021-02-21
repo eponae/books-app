@@ -21,7 +21,7 @@ $contentWidth: calc(100% - #{$menuWidth});
 .content {
   flex: 1 1 $contentWidth;
   max-width: $contentWidth;
-  padding: 0 $spacingUnit * 2 $spacingUnit * 2;
+  padding: 0 $spacingUnit * 3;
   @media (max-width: $mdBreakpoint) {
     padding-top: $spacingUnit * 2;
   }
