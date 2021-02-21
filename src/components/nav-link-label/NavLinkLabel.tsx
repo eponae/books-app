@@ -1,18 +1,19 @@
 import React, { FC } from "react";
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { LinkProps, Link } from "react-router-dom";
 import styles from "./NavLinkLabel.module.scss";
 
-type Props = NavLinkProps;
+type Props = LinkProps & {
+  selected: boolean;
+};
 
-const NavLinkLabel: FC<Props> = ({ children, ...props }) => {
+const NavLinkLabel: FC<Props> = ({ children, selected, ...props }) => {
   return (
-    <NavLink
-      className={styles.container}
+    <Link
+      className={`${styles.container} ${selected && styles.active}`}
       {...props}
-      activeClassName={styles.active}
     >
       {children}
-    </NavLink>
+    </Link>
   );
 };
 

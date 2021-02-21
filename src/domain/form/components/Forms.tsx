@@ -60,7 +60,7 @@ const Forms = () => {
     }
   }, [dispatch, slug, bookshelfSlugs, bookshelfId]);
 
-  // Update if selected bookshlef or page changes
+  // Update if the selected bookshelf or the page number changes
   useEffect(() => {
     const currentPage = getPageFromUrl(pageNumber);
     const currentOffset = getOffsetFromPage(currentPage, FORMS_COUNT_PER_PAGE);
