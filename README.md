@@ -2,7 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) Typescript template.
 
-## Available Scripts
+## Available in production
+
+Deployed with [Vercel](https://vercel.com/) to https://books-app-tau.vercel.app/.
+
+## Available scripts
 
 In the project directory, you can run different tasks with npm.
 If you don't have npm install : [Install Node and npm](https://www.npmjs.com/get-npm).
