@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { getFormsForBookshelfFromOffset } from "../state/action";
 import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
 import { getOffsetFromPage, getPageFromUrl } from "../state/selector";
-import FormsNavigation from "./FormsNavigation";
+import FormsNavigation from "./navigation/FormsNavigation";
 
 const Forms = () => {
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ Deployed with [Vercel](https://vercel.com/) to https://books-app-tau.vercel.app/
 ## Available scripts
 
 In the project directory, you can run different tasks with npm.
-If you don't have npm install : [Install Node and npm](https://www.npmjs.com/get-npm).
+If you don't have npm installed : [install Node and npm](https://www.npmjs.com/get-npm).
 
 ### `npm start`
 

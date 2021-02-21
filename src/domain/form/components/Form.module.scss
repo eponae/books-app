@@ -43,6 +43,8 @@
   $imgHeight: 188px;
   width: $imgWidth;
   height: $imgHeight;
+  min-width: $imgWidth;
+  min-height: $imgHeight;
   max-width: $imgWidth;
   max-height: $imgHeight;
 }

@@ -2,7 +2,7 @@ import { RESET_AUTHORS, SET_AUTHORS } from "../action-type";
 import { AuthorActionType, AuthorReducerType } from "../authorState.type";
 
 type ReducerType = AuthorReducerType["authorNames"];
-const defaultState: ReducerType = {};
+export const defaultState: ReducerType = {};
 
 function authorNames(
   state: ReducerType = defaultState,

@@ -3,7 +3,7 @@ import { RESET_FORMS, SET_FORM } from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
 type ReducerType = FormReducerType["formPrices"];
-const defaultState: ReducerType = {};
+export const defaultState: ReducerType = {};
 
 function formPrices(state: ReducerType = defaultState, action: FormActionType) {
   switch (action.type) {

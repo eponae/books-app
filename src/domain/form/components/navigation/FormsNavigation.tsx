@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { AppStateType } from "../../../state/state.type";
-import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
-import { getLastPageNumber } from "../state/selector";
+import { AppStateType } from "../../../../state/state.type";
+import { FORMS_COUNT_PER_PAGE } from "../../state/reducer/formsLoading";
+import { getLastPageNumber } from "../../state/selector";
 import styles from "./FormsNavigation.module.scss";
 
 type Props = {

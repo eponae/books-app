@@ -5,7 +5,7 @@ import {
 } from "../bookshelfState.type";
 
 type ReducerType = BookshelfReducerType["bookshelfFormCount"];
-const defaultState: ReducerType = {};
+export const defaultState: ReducerType = {};
 
 function bookshelfFormCount(
   state: ReducerType = defaultState,

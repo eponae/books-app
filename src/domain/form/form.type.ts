@@ -1,6 +1,6 @@
 import { AuthorType } from "../author/author.type";
 
-type FormPriceType = {
+export type FormPriceType = {
   amount: number;
   currency: "EUR";
   includes_taxes: boolean;
