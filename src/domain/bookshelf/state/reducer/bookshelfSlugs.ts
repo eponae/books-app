@@ -6,7 +6,7 @@ import {
 } from "../bookshelfState.type";
 
 type ReducerType = BookshelfReducerType["bookshelfSlugs"];
-const defaultState: ReducerType = {};
+export const defaultState: ReducerType = {};
 
 function bookshelfSlugs(
   state: ReducerType = defaultState,

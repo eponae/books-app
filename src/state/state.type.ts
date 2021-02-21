@@ -7,3 +7,9 @@ export type AppStateType = {
   bookshelves: BookshelfReducerType;
   authors: AuthorReducerType;
 };
+
+export type AppStateTypeForTests = {
+  forms: Partial<FormReducerType>;
+  bookshelves: Partial<BookshelfReducerType>;
+  authors: Partial<AuthorReducerType>;
+};

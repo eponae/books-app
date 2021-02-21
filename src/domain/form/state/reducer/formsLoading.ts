@@ -8,7 +8,7 @@ import { FormActionType, FormReducerType } from "../formState.type";
 type ReducerType = FormReducerType["formsLoading"];
 export const FORMS_COUNT_PER_PAGE = 20;
 
-const defaultState: ReducerType = {
+export const defaultState: ReducerType = {
   isLoading: false,
   page: 1,
 };

@@ -6,32 +6,30 @@ export function getFormVisibleInformation(
   id: FormType["id"],
   forms: AppStateType["forms"],
   authors: AppStateType["authors"]
-): FormType | null {
-  const { formIds, formImages, formAuthors, formPrices, formTitles } = forms;
+): FormType {
+  const { formImages, formAuthors, formPrices, formTitles } = forms;
   const { authorIds, authorNames, authorSlugs } = authors;
-  if (formIds.includes(id)) {
-    const authors = forms.formAuthors[id]
-      ? formAuthors[id].reduce((acc: Array<AuthorType>, authorId) => {
-          if (authorIds.includes(authorId)) {
-            acc.push({
-              id: authorId,
-              slug: authorSlugs[authorId],
-              name: authorNames[authorId],
-            });
-          }
-          return acc;
-        }, [])
-      : [];
 
-    return {
-      id,
-      image: formImages[id],
-      short_title: formTitles[id],
-      authors,
-      price: formPrices[id],
-    };
-  }
-  return null;
+  const formattedAuthors = forms.formAuthors[id]
+    ? formAuthors[id].reduce((acc: Array<AuthorType>, authorId) => {
+        if (authorIds.includes(authorId)) {
+          acc.push({
+            id: authorId,
+            slug: authorSlugs[authorId],
+            name: authorNames[authorId],
+          });
+        }
+        return acc;
+      }, [])
+    : [];
+
+  return {
+    id,
+    image: formImages[id],
+    short_title: formTitles[id],
+    authors: formattedAuthors,
+    price: formPrices[id],
+  };
 }
 
 export function formatFormPrice(
