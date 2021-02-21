@@ -1,16 +1,32 @@
-import { SET_FORMS_LOADING } from "../action-type";
+import {
+  RESET_FORMS_LOADING,
+  SET_FORMS_LOADING,
+  SET_FORMS_PAGE,
+} from "../action-type";
 import { FormActionType, FormReducerType } from "../formState.type";
 
 type ReducerType = FormReducerType["formsLoading"];
-const defaultState: ReducerType = false;
+export const FORMS_COUNT_PER_PAGE = 20;
+
+const defaultState: ReducerType = {
+  isLoading: false,
+  page: 1,
+};
 
 function formsLoading(
   state: ReducerType = defaultState,
   action: FormActionType
 ) {
   switch (action.type) {
+    case RESET_FORMS_LOADING: {
+      return defaultState;
+    }
     case SET_FORMS_LOADING: {
-      return action.payload;
+      return { ...state, isLoading: action.payload };
+    }
+    case SET_FORMS_PAGE: {
+      const { page } = action.payload;
+      return { ...state, page };
     }
     default: {
       return state;

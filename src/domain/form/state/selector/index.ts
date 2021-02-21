@@ -7,14 +7,7 @@ export function getFormVisibleInformation(
   forms: AppStateType["forms"],
   authors: AppStateType["authors"]
 ): FormType | null {
-  const {
-    formIds,
-    formImages,
-    formAuthors,
-    formPrices,
-    formSlugs,
-    formTitles,
-  } = forms;
+  const { formIds, formImages, formAuthors, formPrices, formTitles } = forms;
   const { authorIds, authorNames, authorSlugs } = authors;
   if (formIds.includes(id)) {
     const authors = forms.formAuthors[id]
@@ -32,7 +25,6 @@ export function getFormVisibleInformation(
 
     return {
       id,
-      slug: formSlugs[id],
       image: formImages[id],
       short_title: formTitles[id],
       authors,
@@ -49,8 +41,31 @@ export function formatFormPrice(
   if (formPrice.currency) {
     price.push("€");
   }
-  if (formPrice.includes_taxes) {
-    price.push(formPrice.includes_taxes ? "TTC" : "HT");
-  }
+  price.push(formPrice.includes_taxes ? "TTC" : "HT");
+
   return price.join(" ");
+}
+
+export function getOffsetFromPage(page: number, itemsPerPage: number) {
+  return page > 0 ? (page - 1) * itemsPerPage : 0;
+}
+
+export function getPageFromUrl(pageUrl?: string) {
+  const pageNumber = pageUrl ? parseInt(pageUrl) : 1;
+  return Number.isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
+}
+
+export function getLastPageNumber(
+  itemsTotalCount: number,
+  itemsPerPage: number
+) {
+  if (itemsPerPage <= 0) {
+    return 1;
+  }
+  const numberOfPages = Math.floor(itemsTotalCount / itemsPerPage);
+  const lastPageItemsCount = itemsTotalCount % itemsPerPage;
+  if (lastPageItemsCount > 0) {
+    return numberOfPages + 1;
+  }
+  return numberOfPages;
 }

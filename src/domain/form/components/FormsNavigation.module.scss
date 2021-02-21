@@ -1,0 +1,17 @@
+@import "../../../style/variables";
+
+.actions {
+  padding: $spacingUnit * 2 0;
+  width: 100%;
+  text-align: right;
+}
+
+.link {
+  color: $blueColor;
+  font-size: 15px;
+  font-weight: 900;
+  margin-left: $spacingUnit * 2;
+  &:hover {
+    text-decoration: underline;
+  }
+}

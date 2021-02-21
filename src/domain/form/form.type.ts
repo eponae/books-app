@@ -8,7 +8,6 @@ type FormPriceType = {
 
 export type FormType = {
   id: string;
-  slug: string;
   short_title: string;
   price?: FormPriceType;
   image: string;
