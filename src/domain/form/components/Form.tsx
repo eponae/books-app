@@ -1,10 +1,11 @@
-import { FC, Fragment, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppStateType } from "../../../state/state.type";
 import { logAndSaveError } from "../../error/state/action";
 import { FormType } from "../form.type";
 import { getForm } from "../state/action";
 import { formatFormPrice, getFormVisibleInformation } from "../state/selector";
+import FormAuthors from "./authors/FormAuthors";
 import styles from "./Form.module.scss";
 
 type Props = {
@@ -45,22 +46,7 @@ const Form: FC<Props> = ({ id }) => {
       )}
       <div className={styles.title}>{short_title}</div>
       {authors && authors.length > 0 && (
-        <div className={styles.author}>
-          par{" "}
-          {authors.map((author, index) => (
-            <Fragment key={`${id}-${author.id}`}>
-              <a
-                key={author.id}
-                href={`https://glose.com/author/${author.slug}`}
-                className={styles.authorLink}
-              >
-                {author.name}
-              </a>
-              {authors.length > 2 && index < authors.length - 2 && ", "}
-              {authors.length > 1 && index === authors.length - 2 && " et "}
-            </Fragment>
-          ))}
-        </div>
+        <FormAuthors formId={id} authors={authors} />
       )}
     </li>
   );

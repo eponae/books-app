@@ -27,7 +27,7 @@ describe("Form", () => {
     expect(form).toBeInTheDocument();
   });
 
-  it("should display form with authors if present", async () => {
+  it("should display form with author if present", async () => {
     const apiMock = funtcher.get.mockResolvedValue({
       data: mockedFormWithAuthor,
     });
