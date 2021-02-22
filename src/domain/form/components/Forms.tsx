@@ -9,7 +9,7 @@ import { findBookshelfIdFromSlug } from "../../bookshelf/state/selector";
 import { useParams } from "react-router-dom";
 import { getFormsForBookshelfFromOffset } from "../state/action";
 import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
-import { getOffsetFromPage, getPageFromUrl } from "../state/selector";
+import { getOffsetFromPage, getPageNumberFromUrl } from "../state/selector";
 import FormsNavigation from "./navigation/FormsNavigation";
 import { logAndSaveError } from "../../error/state/action";
 
@@ -68,7 +68,7 @@ const Forms = () => {
 
   // Update if the selected bookshelf or the page number changes
   useEffect(() => {
-    const currentPage = getPageFromUrl(pageNumber);
+    const currentPage = getPageNumberFromUrl(pageNumber);
     const currentOffset = getOffsetFromPage(currentPage, FORMS_COUNT_PER_PAGE);
 
     loadPageForms(bookshelfId, currentPage, currentOffset);

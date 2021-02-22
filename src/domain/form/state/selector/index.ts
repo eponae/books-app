@@ -48,7 +48,7 @@ export function getOffsetFromPage(page: number, itemsPerPage: number) {
   return page > 0 ? (page - 1) * itemsPerPage : 0;
 }
 
-export function getPageFromUrl(pageUrl?: string) {
+export function getPageNumberFromUrl(pageUrl?: string) {
   const pageNumber = pageUrl ? parseInt(pageUrl) : 1;
   return Number.isNaN(pageNumber) || pageNumber < 1 ? 1 : pageNumber;
 }
@@ -57,7 +57,7 @@ export function getLastPageNumber(
   itemsTotalCount: number,
   itemsPerPage: number
 ) {
-  if (itemsPerPage <= 0) {
+  if (itemsPerPage <= 0 || itemsTotalCount <= 0) {
     return 1;
   }
   const numberOfPages = Math.floor(itemsTotalCount / itemsPerPage);

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "funtch": "2.4.3",
+    "funtch": "2.5.0",
     "immer": "8.0.1",
     "node-sass": "5.0.0",
     "react": "17.0.1",

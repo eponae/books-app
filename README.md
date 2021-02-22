@@ -70,6 +70,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 - Handle forms that appear in more than one bookshelf.
 - Add design system components : typography, pagination and loading.
 - Handle different languages.
+- Handle different currencies.
 - Cancel requests if the user goes quickly from page to page.
 - Handle form covers that can not be loaded and optimize covers loading.
 - Handle errors and display a better feedback to the user.
