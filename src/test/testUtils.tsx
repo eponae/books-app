@@ -10,7 +10,10 @@ import { AppStateTypeForTests } from "../state/state.type";
 
 export function clearMocksAfterTests() {
   afterEach(() => {
+    jest.clearAllMocks();
     jest.resetAllMocks();
+    jest.restoreAllMocks();
+    jest.resetModules();
   });
 }
 

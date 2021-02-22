@@ -16,8 +16,9 @@ jest.mock("../../../../apiConfig");
 
 describe("Form", () => {
   it("should display form", async () => {
-    funtcher.get.mockResolvedValue({ data: mockedForm });
+    const apiMock = funtcher.get.mockResolvedValue({ data: mockedForm });
     renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
+    await apiMock();
 
     const form = await screen.findByText(
       mockedFormWithPriceAndAuthors.short_title
@@ -25,23 +26,43 @@ describe("Form", () => {
 
     expect(form).toBeInTheDocument();
   });
-  it("should display form with authors if present", async () => {
-    funtcher.get.mockResolvedValue({ data: mockedFormWithAuthor });
-    renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
 
-    const author1 = await screen.findByText(
-      mockedFormWithAuthor.authors[0].name
-    );
+  it("should display form with authors if present", async () => {
+    const apiMock = funtcher.get.mockResolvedValue({
+      data: mockedFormWithAuthor,
+    });
+    renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
+    await apiMock();
+
+    const author1 = await screen.findByText("Margaret Atwood");
+    const authorLink = screen.getByRole("link");
 
     expect(author1).toBeInTheDocument();
+    expect(authorLink).toHaveAttribute(
+      "href",
+      "https://glose.com/author/margaret-atwood"
+    );
   });
+
   it("should display form with price", async () => {
-    funtcher.get.mockResolvedValue({ data: mockedFormWithPrice });
+    const apiMock = funtcher.get.mockResolvedValue({
+      data: mockedFormWithPrice,
+    });
     renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
+    await apiMock();
 
     const form = await screen.findByText("849 € HT");
 
     expect(form).toBeInTheDocument();
+  });
+
+  it("should throw error", async () => {
+    const apiMock = funtcher.get.mockRejectedValueOnce({ message: "error" });
+    renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
+    await apiMock();
+
+    const form = screen.queryByText("Brave New World");
+    expect(form).not.toBeInTheDocument();
   });
 
   clearMocksAfterTests();

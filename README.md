@@ -47,9 +47,10 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 - Create Redux model for : bookshelves, forms and authors (user is not handled).
 - Reuse some of the existing CSS from Glose example page.
 - Use given API services.
+- Make a minimum error handling.
 - Technical :
   - Normalize Redux state and use immer if necessary for immutability.
-  - Use Redux dev tools and chrome developer console to debug.
+  - Use Redux dev tools, chrome developer console and [Insomnia](https://insomnia.rest/) to debug.
   - Use css modules and scss for stylesheets.
   - Use typescript for typing.
   - Use react-testing-library for testing.
@@ -65,16 +66,17 @@ You can learn more in the [Create React App documentation](https://facebook.gith
   - Allow different types of list display (grid, list).
   - Display forms count next to bookshelf names.
   - Show long form or bookshelf titles on mouse hover thanks to a tooltip.
+  - Handle user information and display.
 - Handle forms that appear in more than one bookshelf.
-- Handle user information and display.
 - Add design system components : typography, pagination and loading.
 - Handle different languages.
 - Cancel requests if the user goes quickly from page to page.
 - Handle form covers that can not be loaded and optimize covers loading.
-- Handle errors and display a feedback to the user.
+- Handle errors and display a better feedback to the user.
 - Handle api errors : inconsistent number of forms per page or downtime if any.
 - Deploy to production and check npm tasks for CI.
 - Change Favicon.
+- Improve performance and study web vitals.
 - Technical :
   - Study if Map, Set and Reselect could have been usefull.
   - Use lazy loading and code splitting.
@@ -85,7 +87,13 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 **Npm Audit Manual Review**
 
 <p>Some vulnerabilities require attention to resolve</p>
-
 <p>Package : immer</p>
 <p>Patched in 8.0.1/<p>
 <p>Dependency react-scripts > react-dev-utils > immer</p>
+
+**Lighhouse report**
+
+<p>Performance : 54</p>
+<p>Accessibility : 95</p>
+<p>Best practices : 93</p>
+<p>SEO : 100</p>

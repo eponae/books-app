@@ -1,6 +1,7 @@
 import { FC, Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppStateType } from "../../../state/state.type";
+import { logAndSaveError } from "../../error/state/action";
 import { FormType } from "../form.type";
 import { getForm } from "../state/action";
 import { formatFormPrice, getFormVisibleInformation } from "../state/selector";
@@ -14,7 +15,14 @@ const Form: FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getForm(id));
+    async function fetchForm(formId: Props["id"]) {
+      try {
+        await dispatch(getForm(formId));
+      } catch (error) {
+        dispatch(logAndSaveError(error));
+      }
+    }
+    fetchForm(id);
   }, [id, dispatch]);
 
   const formInformation = useSelector((state: AppStateType) =>

@@ -6,6 +6,7 @@ import { getBookshelves, setBookshelf } from "../state/action";
 import styles from "./Bookshelves.module.scss";
 import NavLinkLabel from "../../../components/nav-link-label/NavLinkLabel";
 import { BookShelfType } from "../bookshelf.type";
+import { logAndSaveError } from "../../error/state/action";
 
 const Bookshelves = () => {
   const dispatch = useDispatch();
@@ -29,7 +30,14 @@ const Bookshelves = () => {
 
   // Load bookshelves
   useEffect(() => {
-    dispatch(getBookshelves());
+    async function fetchBookshelves() {
+      try {
+        await dispatch(getBookshelves());
+      } catch (error) {
+        dispatch(logAndSaveError(error));
+      }
+    }
+    fetchBookshelves();
   }, [dispatch]);
 
   // Handle first page loading

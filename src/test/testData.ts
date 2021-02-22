@@ -14,9 +14,6 @@ export const mockedBookshelves: Array<BookShelfType> = [
 export const mockedForms: Array<FormType["id"]> = [
   "5b3a3da816786c5a863c76a8",
   "5b27a4a516786c5a86eafa0e",
-  "5b3ba28e16786c5a8643e1f6",
-  "5b240d6816786c5a86fbae1e",
-  "5b27a9b016786c5a860f9507",
 ];
 
 export const mockedFormWithPriceAndAuthors: Omit<

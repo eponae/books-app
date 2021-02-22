@@ -11,6 +11,7 @@ import { getFormsForBookshelfFromOffset } from "../state/action";
 import { FORMS_COUNT_PER_PAGE } from "../state/reducer/formsLoading";
 import { getOffsetFromPage, getPageFromUrl } from "../state/selector";
 import FormsNavigation from "./navigation/FormsNavigation";
+import { logAndSaveError } from "../../error/state/action";
 
 const Forms = () => {
   const dispatch = useDispatch();
@@ -31,20 +32,24 @@ const Forms = () => {
   );
 
   const loadPageForms = useCallback(
-    (
+    async (
       currentBookshelfId: typeof bookshelfId,
       currentPage: typeof page,
       currentOffset: typeof page
     ) => {
-      if (currentBookshelfId) {
-        dispatch(
-          getFormsForBookshelfFromOffset(
-            currentBookshelfId,
-            currentPage,
-            currentOffset,
-            FORMS_COUNT_PER_PAGE
-          )
-        );
+      try {
+        if (currentBookshelfId) {
+          await dispatch(
+            getFormsForBookshelfFromOffset(
+              currentBookshelfId,
+              currentPage,
+              currentOffset,
+              FORMS_COUNT_PER_PAGE
+            )
+          );
+        }
+      } catch (error) {
+        dispatch(logAndSaveError(error));
       }
     },
     [dispatch]

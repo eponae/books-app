@@ -8,16 +8,22 @@ import {
   authorInitialState,
   authorReducer,
 } from "../../domain/author/state/reducer";
+import {
+  errorInitialState,
+  errorReducer,
+} from "../../domain/error/state/reducer";
 
 export const appInitialState = {
   ...formInitialState,
   ...bookshelfInitialState,
   ...authorInitialState,
+  ...errorInitialState,
 };
 
 const reducers = combineReducers({
   ...formReducer,
   ...bookshelfReducer,
   ...authorReducer,
+  ...errorReducer,
 });
 export default reducers;

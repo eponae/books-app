@@ -31,6 +31,7 @@ export const getFormsForBookshelfFromOffset = (
     offset,
     limit,
   });
+  console.log(formIds, headers);
 
   const formCount = headers["x-glose-count"];
   dispatch(setBookshelfFormCount(bookshelfId, formCount));
