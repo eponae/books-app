@@ -82,6 +82,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
   - Study if Map, Set and Reselect could have been usefull.
   - Use lazy loading and code splitting.
   - Do not use global variable for forms count per page.
+  - Improve file paths to make it more readable.
 
 ## Issues to fix
 
