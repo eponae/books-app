@@ -35,7 +35,7 @@ export function getFormVisibleInformation(
 export function formatFormPrice(
   formPrice: Exclude<FormType["price"], undefined>
 ) {
-  const price = [String(formPrice.amount)];
+  const price = [String(formPrice.amount / 100)];
   if (formPrice.currency) {
     price.push("€");
   }

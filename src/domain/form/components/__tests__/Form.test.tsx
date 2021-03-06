@@ -51,7 +51,7 @@ describe("Form", () => {
     renderWithProviders(<Form id="5b3a3da816786c5a863c76a8" />);
     await apiMock();
 
-    const form = await screen.findByText("849 € HT");
+    const form = await screen.findByText("8.49 € HT");
 
     expect(form).toBeInTheDocument();
   });

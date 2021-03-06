@@ -104,12 +104,12 @@ describe("Form selector index", () => {
     it("return formatted price with taxes", () => {
       const price = { amount: 849, currency: "EUR", includes_taxes: true };
       const result = formatFormPrice(price);
-      expect(result).toEqual("849 € TTC");
+      expect(result).toEqual("8.49 € TTC");
     });
     it("return formatted price without taxes", () => {
       const price = { amount: 849, currency: "EUR", includes_taxes: false };
       const result = formatFormPrice(price);
-      expect(result).toEqual("849 € HT");
+      expect(result).toEqual("8.49 € HT");
     });
   });
   describe("getOffsetFromPage", () => {
